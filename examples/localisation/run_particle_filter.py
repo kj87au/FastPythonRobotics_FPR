@@ -11,6 +11,7 @@ Description:
 # IMPORTS
 import matplotlib.pyplot as plt
 import numpy as np
+from ...FPR.Filters.ParticleFilters import calc_input
 
 # GLOBALS
 # Estimation parameter of PF
@@ -33,7 +34,6 @@ show_animation = True
 
 
 def main():
-    def main():
     print(__file__ + " start!!")
 
     time = 0.0

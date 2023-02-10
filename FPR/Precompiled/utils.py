@@ -11,8 +11,15 @@ Description:
 # IMPORTS
 import numpy as np
 from scipy.spatial.transform import Rotation as Rot
+from numba.pycc import CC
 
 
+cc = CC('Angles')
+# Uncomment the following line to print out the compilation steps
+#cc.verbose = True
+
+
+# @cc.export('multf', 'f8(f8)')
 def rot_mat_2d(angle):
     """
     Create 2D rotation matrix from an angle
@@ -83,4 +90,4 @@ def angle_mod(x, zero_2_2pi=False, degree=False):
 
 
 if __name__ == "__main__":
-    main()
+    cc.compile()
