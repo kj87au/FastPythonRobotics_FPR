@@ -25,6 +25,8 @@ mypy = "^1.0.0"
 ruff = "^0.0.244"
 pyloot = "^0.1.0"
 line-profiler = "^4.0.2"
+pyyaml = "^6.0"
+lark = "^1.1.5"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
