@@ -11,7 +11,11 @@ Description:
 # IMPORTS
 import matplotlib.pyplot as plt
 import numpy as np
-from ...FPR.Filters.ParticleFilters import calc_input
+from FPR.Filters.ParticleFilter import (calc_input, observation, motion_model,
+                                           gauss_likelihood, calc_covariance, pf_localization,
+                                           re_sampling, plot_covariance_ellipse)
+
+
 
 # GLOBALS
 # Estimation parameter of PF
@@ -61,9 +65,16 @@ def main():
         time += DT
         u = calc_input()
 
-        x_true, z, x_dr, ud = observation(x_true, x_dr, u, rf_id)
+        x_true, z, x_dr, ud = observation(x_true,
+                                          x_dr,
+                                          u,
+                                          rf_id,
+                                          DT,
+                                          MAX_RANGE,
+                                          Q_sim,
+                                          R_sim)
 
-        x_est, PEst, px, pw = pf_localization(px, pw, z, ud)
+        x_est, PEst, px, pw = pf_localization(px, pw, z, ud, NP, R, Q, DT, NTh)
 
         # store data history
         h_x_est = np.hstack((h_x_est, x_est))
